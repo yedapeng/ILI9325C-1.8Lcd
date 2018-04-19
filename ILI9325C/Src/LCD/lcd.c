@@ -7,18 +7,31 @@
 #include "cmsis_os.h"
 
 //////////////////////////////////////////////////////////////////////////////////
+//
+//#define LCD_RST_L()     HAL_GPIO_WritePin(LCD_RST_GPIO_Port, LCD_RST_Pin, GPIO_PIN_RESET)
+//#define LCD_RST_H()     HAL_GPIO_WritePin(LCD_RST_GPIO_Port, LCD_RST_Pin, GPIO_PIN_SET)
+//
+//#define LCD_CS_L()     HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_RESET)
+//#define LCD_CS_H()     HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_SET)
+//
+//#define LCD_SCL_L()     HAL_GPIO_WritePin(LCD_SCL_GPIO_Port, LCD_SCL_Pin, GPIO_PIN_RESET)
+//#define LCD_SCL_H()     HAL_GPIO_WritePin(LCD_SCL_GPIO_Port, LCD_SCL_Pin, GPIO_PIN_SET)
+//
+//#define LCD_SDA_L()     HAL_GPIO_WritePin(LCD_SDA_GPIO_Port, LCD_SDA_Pin, GPIO_PIN_RESET)
+//#define LCD_SDA_H()     HAL_GPIO_WritePin(LCD_SDA_GPIO_Port, LCD_SDA_Pin, GPIO_PIN_SET)
 
-#define LCD_RST_L()     HAL_GPIO_WritePin(LCD_RST_GPIO_Port, LCD_RST_Pin, GPIO_PIN_RESET)
-#define LCD_RST_H()     HAL_GPIO_WritePin(LCD_RST_GPIO_Port, LCD_RST_Pin, GPIO_PIN_SET)
+#define LCD_RST_L()     LL_GPIO_ResetOutputPin(LCD_RST_GPIO_Port, LCD_RST_Pin)
+#define LCD_RST_H()     LL_GPIO_SetOutputPin(LCD_RST_GPIO_Port, LCD_RST_Pin)
 
-#define LCD_CS_L()     HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_RESET)
-#define LCD_CS_H()     HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_SET)
+#define LCD_CS_L()      LL_GPIO_ResetOutputPin(LCD_CS_GPIO_Port, LCD_CS_Pin)
+#define LCD_CS_H()      LL_GPIO_SetOutputPin(LCD_CS_GPIO_Port, LCD_CS_Pin)
 
-#define LCD_SCL_L()     HAL_GPIO_WritePin(LCD_SCL_GPIO_Port, LCD_SCL_Pin, GPIO_PIN_RESET)
-#define LCD_SCL_H()     HAL_GPIO_WritePin(LCD_SCL_GPIO_Port, LCD_SCL_Pin, GPIO_PIN_SET)
+#define LCD_SCL_L()     LL_GPIO_ResetOutputPin(LCD_SCL_GPIO_Port, LCD_SCL_Pin)
+#define LCD_SCL_H()     LL_GPIO_SetOutputPin(LCD_SCL_GPIO_Port, LCD_SCL_Pin)
 
-#define LCD_SDA_L()     HAL_GPIO_WritePin(LCD_SDA_GPIO_Port, LCD_SDA_Pin, GPIO_PIN_RESET)
-#define LCD_SDA_H()     HAL_GPIO_WritePin(LCD_SDA_GPIO_Port, LCD_SDA_Pin, GPIO_PIN_SET)
+#define LCD_SDA_L()     LL_GPIO_ResetOutputPin(LCD_SDA_GPIO_Port, LCD_SDA_Pin)
+#define LCD_SDA_H()     LL_GPIO_SetOutputPin(LCD_SDA_GPIO_Port, LCD_SDA_Pin)
+
 
 				 
 //LCDµÄ»­±ÊÑÕÉ«ºÍ±³¾°É«	   
@@ -33,11 +46,18 @@ _lcd_dev lcddev;
 void SPI_SendData(u8 data)
 {  u8 n;
    for(n=0; n<8; n++)			
-   {  if(data&0x80) LCD_SDA_H();
-      else          LCD_SDA_L();
+   {  
+     if(data&0x80) 
+      {
+        LCD_SDA_H();
+      }
+      else          
+      {
+        LCD_SDA_L();
+      }
       data<<= 1;
       LCD_SCL_L();
-	    LCD_SCL_H();			
+      LCD_SCL_H();			
    }
 }		   
 //Ð´¼Ä´æÆ÷º¯Êý

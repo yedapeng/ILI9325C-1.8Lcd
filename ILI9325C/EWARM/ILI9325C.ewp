@@ -217,6 +217,7 @@
           <name>CCDefines</name>
           <state>USE_HAL_DRIVER</state>
           <state>STM32F401xC</state>
+          <state>USE_FULL_LL_DRIVER</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -354,6 +355,16 @@
           <state>$PROJ_DIR$\..\Src\delay</state>
           <state>$PROJ_DIR$\..\Src\sys</state>
           <state>$PROJ_DIR$\..\Src\LCD</state>
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
           <state />
           <state />
           <state />
@@ -1353,6 +1364,9 @@
       <file>
         <name>$PROJ_DIR$\..\Src\usbh_platform.c</name>
       </file>
+      <file>
+        <name>$PROJ_DIR$/../Src/stm32f4xx_hal_timebase_TIM.c</name>
+      </file>
     </group>
   </group>
   <group>
@@ -1430,6 +1444,18 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usb.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$/../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_utils.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$/../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_rcc.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$/../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_gpio.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$/../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c</name>
       </file>
     </group>
   </group>
